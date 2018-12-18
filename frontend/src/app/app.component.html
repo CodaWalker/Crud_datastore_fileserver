@@ -1,0 +1,13 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<mat-toolbar>
+  <span>Crud Express Angular Node</span>
+  <span class="pr-10 right_but">
+    <a [routerLink]="['/list']"><button mat-button color="primary">Json file LIST</button></a>
+    <a [routerLink]="['/listDS']"><button mat-button color="primary">DataStore file LIST</button></a>
+    <a [routerLink]="['/']"><button mat-raised-button color="primary" style="margin-right: 5px">HomePage</button></a>
+    <a href="http://localhost:4000" target="_blank"><button mat-raised-button color="secondary" >Json DB</button></a>
+  </span>
+</mat-toolbar>
+<div>
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,32 @@
+<div>
+  <br>
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Update Card JsonFile</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br>
+    <form [formGroup]="updateForm" class="edit-form">
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Account" formControlName="account" #account>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Fio" formControlName="fio" #fio>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Post" formControlName="post" #post>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input  matInput placeholder="Status" formControlName="status" #status>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="CreatedAt" formControlName="createdAt" #createdAt>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <br><br>
+      <button mat-raised-button color="accent" routerLink="/list">Back</button>&nbsp;
+      <button style="margin-right:5px" type="submit" (click)="copyInCard(account.value, fio.value, post.value, status.value, createdAt.value)" [disabled]="updateForm.invalid" mat-raised-button color="primary">Copy in DS</button>
+      <button  type="submit" (click)="updateCard(account.value, fio.value, post.value, status.value, createdAt.value)" [disabled]="updateForm.pristine || updateForm.invalid" mat-raised-button color="primary">Save JSON File</button>
+    </form>
+  </mat-card>
+</div>

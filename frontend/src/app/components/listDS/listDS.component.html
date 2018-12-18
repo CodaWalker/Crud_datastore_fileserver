@@ -1,0 +1,67 @@
+<div>
+  <br>
+  <mat-card>
+    <h3>Card List Page DataStore</h3>
+    <div class="example-button-row">
+    <span class="pr-10">
+    <button style="margin-right:5px" mat-raised-button color="primary" routerLink="/create">Create</button>
+    <button style="margin-right:5px" mat-raised-button color="primary" (click)="copyCardsInJSON()">Copy ALL DS->JSON</button>
+    <button mat-raised-button color="warn" (click)="clearAllDS()" >Clear All DS</button>
+    </span>
+    </div>
+    <br><br>
+    <mat-divider></mat-divider>
+    <br>
+
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+    <mat-table matSort [dataSource]="dataSource">
+
+      <ng-container matColumnDef="account" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Account</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.account}} </mat-cell>
+      </ng-container>
+
+      <!--<ng-container matColumnDef="fio">-->
+        <!--<mat-header-cell *matHeaderCellDef mat-sort-header>Fio</mat-header-cell>-->
+        <!--<mat-cell *matCellDef="let element"> {{element.author.fio}} </mat-cell>-->
+      <!--</ng-container>-->
+
+      <!--<ng-container matColumnDef="post">-->
+        <!--<mat-header-cell *matHeaderCellDef mat-sort-header>Post</mat-header-cell>-->
+        <!--<mat-cell *matCellDef="let element"> {{element.author.post}} </mat-cell>-->
+      <!--</ng-container>-->
+
+      <ng-container matColumnDef="createdAt">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>createdAt</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.createdAt}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.status}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef class="mat-column-right">Actions</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="mat-column-right">
+          <button mat-button color="primary" (click)="open(element)">Open</button>
+          <button mat-button color="primary" (click)="editCard(element.id)">Edit</button>
+          <button mat-button color="warn" (click)="deleteDataStoreCard(element.id,element.author.fio)">Delete</button>
+          <!--<button mat-button color="warn" (click)="deleteCard(element.id,element.author.fio)">Delete</button>-->
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumnsAllCards"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumnsAllCards"
+               (click)="onRowClicked(row)">
+      </mat-row>
+    </mat-table></div>
+    <mat-paginator  #paginator
+                   (page)="getNext($event)"
+                   [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+</div>
